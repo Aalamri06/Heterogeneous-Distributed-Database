@@ -2,35 +2,33 @@
 
 A professional distributed database management system built using:
 
-- Go (Master Node + Worker Node)
-- Python Flask (Secondary Worker Node)
-- PostgreSQL
-- HTML/CSS/JavaScript Dashboard
+- Go (Master Node + Worker Node 1)
+- Python Flask (Worker Node 2)
+- SQLite & Local Storage Engine (Embedded DB per Node)
+- HTML/CSS/JavaScript Web Dashboard & API Gateway
 - REST API Architecture
 - Dynamic Table Management
-- Real-Time Worker Monitoring
+- Real-Time Worker Monitoring (Heartbeat System)
 
 ---
 
 # Project Overview
 
-This project simulates a real-world distributed database environment where:
+This project simulates a real-world enterprise distributed database environment where:
 
-- A Master Node controls the system.
-- Multiple Worker Nodes replicate and manage data.
-- A professional Web GUI allows dynamic database operations.
-- Worker health monitoring detects online/offline nodes.
-- Dynamic CRUD operations support any database schema.
+- **A Master Node** acts as the central orchestrator and coordinator.
+- **Multiple Heterogeneous Worker Nodes** replicate data, handle sharded queries, and manage local storage.
+- **A Professional Web GUI** allows dynamic database operations and real-time visualization of cluster health.
+- **Advanced Tasks** are integrated including MapReduce distributed querying, Remote OS orchestration, and Write-Through Caching.
 
-The system demonstrates important distributed systems concepts including:
-
-- Distributed databases
-- Replication
-- Failover simulation
-- Multi-node architecture
-- RESTful communication
-- Real-time monitoring
-- Dynamic schema handling
+The system demonstrates key distributed systems concepts including:
+- Distributed databases & Sharding
+- Data Replication & Cross-Node Synchronization
+- **MapReduce Pattern Execution**
+- **Remote Procedure Calls (RPC) / OS Virtualization Control**
+- Heterogeneous Multi-node architecture (Go + Python)
+- **Write-Through Cache Layer Ingestion**
+- Real-time automated Heartbeat monitoring
 
 ---
 
@@ -39,158 +37,68 @@ The system demonstrates important distributed systems concepts including:
 ## Components
 
 ### 1. Master Node (Go)
+**Responsibilities:**
+- Central gateway coordinator.
+- Evaluates incoming schemas and routes dynamic CRUD requests.
+- Coordinates replication protocols across the active cluster.
+- Implements Write-Through Cache validation.
 
-Responsibilities:
-
-- Main coordinator
-- Handles CRUD requests
-- Replicates data to workers
-- Monitors worker status
-- Sends API requests to worker nodes
-- Central database management
-
-Technologies:
-
-- Golang
-- PostgreSQL
-- net/http
-- database/sql
+**Technologies:** Golang, net/http, database/sql.
 
 ---
 
 ### 2. Worker Node 1 (Go)
+**Responsibilities:**
+- High-performance replica node.
+- Implements auto-schema generation (`CREATE TABLE IF NOT EXISTS`) upon payload replication.
+- Executes local OS tasks (Remote shutdown, Wallpaper rendering using localized PowerShell wrappers).
+- Responds to distributed sub-queries (Map Phase).
 
-Responsibilities:
-
-- Replica node
-- Stores replicated data
-- Responds to health checks
-- Receives replicated queries from master
-
-Technologies:
-
-- Golang
-- PostgreSQL
-- REST API
+**Technologies:** Golang, SQLite Driver, Cross-Origin Resource Sharing (CORS) Middleware.
 
 ---
 
 ### 3. Worker Node 2 (Python Flask)
+**Responsibilities:**
+- Secondary replica worker node.
+- Simulates a heterogeneous distributed environment ecosystem.
+- Exposes native operational hooks for internal system monitoring.
+- Manages local SQLite isolated state storage.
 
-Responsibilities:
-
-- Secondary replica node
-- Receives replicated data
-- Simulates heterogeneous distributed systems
-- Responds to health checks
-
-Technologies:
-
-- Python
-- Flask
-- PostgreSQL
+**Technologies:** Python, Flask, Flask-CORS, Windows OS Shell utilities.
 
 ---
 
-### 4. Professional Web Dashboard
+### 4. Professional Web Dashboard (API Gateway Browser)
+**Responsibilities:**
+- Real-time Node status validation (Automated AJAX Heartbeats running every 3 seconds).
+- Interface layout for Remote OS execution.
+- Dynamic layout generator for tabular MapReduce results.
 
-Responsibilities:
-
-- Dynamic CRUD operations
-- Real-time monitoring
-- Dynamic schema rendering
-- User interaction
-- Distributed system visualization
-
-Technologies:
-
-- HTML5
-- CSS3
-- JavaScript
-- Bootstrap
+**Technologies:** HTML5, CSS3, JavaScript (Async/Await Fetch API), Bootstrap.
 
 ---
 
-# Features
+# Key Features & Added Tasks
 
-## Dynamic Table Creation
+## 1. Dynamic Auto-Schema Generation & CRUD
+- **Create Dynamic Table:** Emits asynchronous table schema schemas over the system cluster.
+- **Dynamic Insert/Update/Delete:** Automatically inspects structures to generate forms, performing data conversion on-the-fly and safely updating target database segments via ID.
 
-Users can dynamically create database tables using custom columns.
+## 2. Task 1: Remote OS Control & Orchestration
+The client can target any specific backend machine directly through the central interface to perform kernel-level actions:
+- **Remote OS Shutdown:** Executes immediate shell termination commands (`shutdown /s /t 1`), switching the live UI status container to **OFFLINE** within 3 seconds.
+- **Remote Wallpaper Changer:** Injectively triggers Windows PowerShell environment actions to forcefully refresh and update the target machine's active Desktop Wallpaper layout using image path structures.
 
-Example:
+## 3. Task 2: Distributed MapReduce Querying
+Instead of traditional localized database reads, the system aggregates cross-node chunks using a MapReduce sequence:
+- **Map Phase:** Parallel HTTP triggers dispatch requests to worker nodes. Workers extract, clean, and map local structural database tables.
+- **Reduce Phase:** The controller framework captures partial node arrays, shuffles records, and aggregates them into a single consolidated, deduplicated layout inside the Web Viewer.
 
-```text
-name:TEXT,age:INTEGER,email:TEXT
-```
-
----
-
-## Dynamic Insert
-
-The system automatically loads table columns and generates dynamic forms.
-
-Supports:
-
-- Any table structure
-- Automatic input generation
-- Numeric conversion
-- Dynamic JSON handling
-
----
-
-## Dynamic Select
-
-Users can:
-
-- View any table
-- Load records dynamically
-- Render columns automatically
-- Display records in responsive tables
-
----
-
-## Dynamic Update
-
-Supports:
-
-- Updating any row
-- Dynamic update forms
-- Partial updates
-- Generic SQL query building
-
----
-
-## Dynamic Delete
-
-Supports:
-
-- Row deletion by ID
-- Dynamic table selection
-- API-based deletion
-
----
-
-## Real-Time Worker Monitoring
-
-The dashboard checks worker status every 3 seconds.
-
-Features:
-
-- Online/offline detection
-- Real-time UI updates
-- Automatic health checking
-- Worker visualization
-
----
-
-## Replication
-
-The Master Node replicates operations to:
-
-- Worker Node 1 (Go)
-- Worker Node 2 (Python Flask)
-
-This simulates distributed database replication.
+## 4. Bonus Task: Write-Through Cache Ingestion
+To optimize system I/O latency operations:
+- Data payloads route into a memory-buffered **Cache Node** container first.
+- The system executes a safe Write-Through operation, syncing the structural state into the persistent **Main Storage/Workers** before clearing volatile temporary state queues, protecting the cluster from unexpected hardware failure data loss.
 
 ---
 
@@ -204,21 +112,21 @@ DDB-Project/
 │   ├── database.go
 │   ├── replication.go
 │   ├── monitor.go
+│   ├── health.go
+│   ├── handlers.go
+│   ├── master.db
 │   └── go.mod
-│   └── health.go
-│   └── handelers.go
-│   └── master.db
 │
-├── worker-node-1/
+├── worker-node-1/ (Go)
 │   ├── main.go
 │   ├── database.go
 │   ├── handlers.go
 │   └── go.mod
 │
-├── worker-node-2/
+├── worker-node-2/ (Python)
 │   ├── app.py
-│   ├── requirements.txt
-│   └── database.py
+│   ├── database.py
+│   └── requirements.txt
 │
 ├── GUI/
 │   ├── main.go
@@ -227,251 +135,3 @@ DDB-Project/
 │   └── go.mod
 │
 └── README.md
-```
-
----
-
-# Database Design
-
-## PostgreSQL
-
-The project uses PostgreSQL as the distributed database engine.
-
-### Advantages
-
-- Reliable relational database
-- SQL support
-- ACID compliance
-- Multi-node compatibility
-- Production-ready architecture
-
----
-
-# API Endpoints
-
-## Master Node APIs
-
-| Method | Endpoint      | Description          |
-| ------ | ------------- | -------------------- |
-| POST   | /create-table | Create dynamic table |
-| POST   | /insert       | Insert dynamic data  |
-| POST   | /select       | Select table records |
-| POST   | /update       | Update record        |
-| POST   | /delete       | Delete record        |
-| POST   | /columns      | Get dynamic columns  |
-
----
-
-# Real-Time Monitoring
-
-The GUI continuously checks:
-
-- Worker Node 1 status
-- Worker Node 2 status
-
-Monitoring interval:
-
-```text
-Every 3 seconds
-```
-
-Health checks use:
-
-```http
-GET /
-```
-
-If a node fails:
-
-- UI changes to OFFLINE
-- Red status indicator appears
-- System continues running
-
----
-
-# Distributed Systems Concepts Implemented
-
-## 1. Replication
-
-The master node forwards operations to worker nodes.
-
----
-
-## 2. Fault Detection
-
-The GUI detects worker failures in real-time.
-
----
-
-## 3. Multi-Node Architecture
-
-The system contains:
-
-- One master node
-- Two worker nodes
-- Shared distributed communication
-
----
-
-## 4. Heterogeneous Distributed Environment
-
-The project combines:
-
-- Go services
-- Python Flask services
-
-This simulates enterprise distributed systems.
-
----
-
-# Technologies Used
-
-| Technology   | Purpose                |
-| ------------ | ---------------------- |
-| Golang       | Backend services       |
-| Python Flask | Secondary worker node  |
-| PostgreSQL   | Database engine        |
-| HTML/CSS     | Frontend UI            |
-| JavaScript   | Dynamic frontend logic |
-| Bootstrap    | UI styling             |
-| REST APIs    | Communication          |
-
----
-
-# Screenshots
-
-## Dashboard
-
-- Dynamic CRUD operations
-- Worker monitoring
-- Responsive design
-- Real-time updates
-
-## Dynamic Table Viewer
-
-- Automatically generated columns
-- Dynamic rendering
-- Responsive tables
-
----
-
-# How To Run
-
-## 1. Start PostgreSQL
-
-Make sure PostgreSQL is running.
-
----
-
-## 2. Run Master Node
-
-```bash
-go run .
-```
-
-Port:
-
-```text
-8080
-```
-
----
-
-## 3. Run Worker Node 1
-
-```bash
-go run .
-```
-
-Port:
-
-```text
-8081
-```
-
----
-
-## 4. Run Worker Node 2
-
-```bash
-python app.py
-```
-
-Port:
-
-```text
-8082
-```
-
----
-
-## 5. Run GUI
-
-```bash
-go run .
-```
-
-Port:
-
-```text
-8090
-```
-
----
-
-# Future Improvements
-
-Planned improvements include:
-
-- WebSocket live updates
-- Leader election
-- Automatic failover
-- Docker deployment
-- Authentication system
-- Role-based access control
-- Load balancing
-- Sharding
-- Kubernetes deployment
-- Logging system
-- Distributed transactions
-
----
-
-# Educational Value
-
-This project demonstrates practical implementation of:
-
-- Distributed systems
-- Database replication
-- Dynamic SQL handling
-- Multi-language backend systems
-- API communication
-- Full-stack development
-- Real-time monitoring systems
-
----
-
-# Author
-
-## Abdullah Aly
-
-Computer Science Student
-
-Distributed Systems & Backend Development Enthusiast
-
-Skills demonstrated:
-
-- Golang
-- Python
-- PostgreSQL
-- REST APIs
-- Distributed Databases
-- Full Stack Development
-- System Architecture
-
----
-
-# License
-
-This project is developed for educational and professional portfolio purposes.
-
