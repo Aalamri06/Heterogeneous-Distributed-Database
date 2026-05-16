@@ -1,0 +1,21 @@
+1- ipconfig -> IPv4 Address
+2- open Windows Defender Firewall
+Advanced Settings
+→ Inbound Rules
+→ New Rule
+→ Port
+→ TCP
+→ 8001
+→ Allow Connection
+
+3-Replace any (localhost) -> http.ListenAndServe("0.0.0.0:8001/2", nil)
+and http://localhost:8081 -> http://192.168.1.6:8001/2
+
+4-workers := []string{
+	"http://localhost:8001",
+	"http://localhost:8002",
+} ----------------->workers := []string{
+	"http://192.168.1.6:8001",
+	"http://192.168.1.7:8002",
+}
+
